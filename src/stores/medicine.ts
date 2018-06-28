@@ -1,5 +1,3 @@
-import { Module } from 'vuex'
-
 export interface IMedicineInfo {
     mid: String,
     name: String,
@@ -15,12 +13,17 @@ export interface IMedicineList {
 export const SET_MEDICINE_LIST = 'SET_MEDICINE_LIST'
 
 export default {
-    state:()=>({
+    state: {
         list: []
-    }),
+    },
     mutations: {
-        [SET_MEDICINE_LIST](state, { list }: { list: IMedicineInfo[] }) {
+        [SET_MEDICINE_LIST](state:IMedicineList, { list }: { list: IMedicineInfo[] }) {
             state.list.push(...list);
         }
+    },
+    getters: {
+        ['GET_MEDICINE_LIST'](state) {
+            return this.state.list;
+        }
     }
-} as Module<IMedicineList, any>;
+};

@@ -1,4 +1,7 @@
 import { Module } from 'vuex'
+import medicine from '@/stores/medicine.ts'
+export const GET_CURRENT_LIST = 'GET_CURRENT_LIST'
+
 export interface IDBModule {
     name: String,
     _class: String
@@ -19,4 +22,4 @@ export default {
             { name: '客户', _class: 'M'},
         ]
     }),
-} as Module<IDBModuleList, any>;
+} as Module<IDBModuleList,any>;
