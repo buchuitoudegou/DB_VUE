@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <topbar></topbar>
         <div>
             <InfoTable></InfoTable>
         </div>
@@ -10,9 +9,11 @@
 import Vue from 'vue'
 import { RootStore } from '@/store';
 import InfoTable from '@/components/InfoTable.vue'
+import topbar from '@/components/TopBar.vue'
 export default Vue.extend({
     components: {
-        InfoTable
+        InfoTable,
+        topbar
     },
     data: ()=> {
         return {
