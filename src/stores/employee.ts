@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { ILoadMessage, request, IResponseData } from '@/stores/request';
 export interface IEmployee {
   eid: String,
   name: String,
@@ -18,28 +18,23 @@ export default {
       }
   },
   actions: {
-      ['UPDATE_EMPLOYEE_LIST'](state:any, selectMessage:String) {
-          return new Promise((resolve, reject)=>{
-            axios.get(`/api/employee/${selectMessage}`).then((response)=>{
-              state.list = []
-              if (response.data) {
-                let data = response.data.list
-                for (let i in data) {
-                  let curInfo: IEmployee = {
-                    eid: data[i].eid,
-                    name: data[i].name,
-                    birth: data[i].birth,
-                    phone: data[i].phone,
-                    address: data[i].address
-                  }
-                  state.list.push(curInfo)
-                }
-                resolve('finished')
-              } else {
-                reject('fail')
-              } 
-            })
+    async ['UPDATE_EMPLOYEE_LIST'](state:any, options:ILoadMessage) {
+      state.list = []
+      let data = await request('employee', options.methods,
+        options.selectMessage, options.requestData)
+      let status = (data as IResponseData).status
+      let list = (data as IResponseData).list
+      if (status != 'failed') {
+        list.forEach((value)=>{
+          state.list.push({
+            eid: value.eid,
+            name: value.name,
+            birth: value.birth,
+            phone: value.phone,
+            address: value.address
           })
-      }
+        })
+      } 
+    }
   }
 }

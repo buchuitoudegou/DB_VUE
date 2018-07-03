@@ -5,6 +5,7 @@ import medicine, { GET_MEDICINE_LIST } from "@/stores/medicine"
 import employee from '@/stores/employee';
 import supplier from '@/stores/supplier';
 import guest from '@/stores/guest'
+import {ILoadMessage} from '@/stores/request'
 Vue.use(Vuex);
 
 export interface RootStore {
@@ -13,10 +14,7 @@ export interface RootStore {
   mutations: any,
   actions: any
 }
-interface ILoadMessage {
-  tableName: String,
-  selectMessage: String
-}
+
 
 export default new Vuex.Store({
   modules: {
@@ -31,14 +29,15 @@ export default new Vuex.Store({
     
   },
   mutations: {},
+  
   actions: {
     async loadMessage(state:any, options:ILoadMessage) {
-      // console.log(options.tableName)
+      // console.log(1)
       switch(options.tableName) {
-        case '药品': await medicine.actions.UPDATE_MEDICINE_LIST(medicine.state, options.selectMessage);break;
-        case '员工': await employee.actions.UPDATE_EMPLOYEE_LIST(employee.state, options.selectMessage);break;
-        case '供应商': await supplier.actions.UPDATE_SUPPLIER_LIST(supplier.state, options.selectMessage);break;
-        case '客户': await guest.actions.UPDATE_GUEST_LIST(guest.state, options.selectMessage);break;
+        case '药品': await medicine.actions.UPDATE_MEDICINE_LIST(medicine.state, options);break;
+        case '员工': await employee.actions.UPDATE_EMPLOYEE_LIST(employee.state, options);break;
+        case '供应商': await supplier.actions.UPDATE_SUPPLIER_LIST(supplier.state, options);break;
+        case '客户': await guest.actions.UPDATE_GUEST_LIST(guest.state, options);break;
       }  
     }
   }

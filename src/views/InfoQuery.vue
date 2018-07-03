@@ -1,10 +1,10 @@
 <template>
     <div id="app">
         <div>
+           <button v-for="(value, index) in tableList" v-bind:key="index"
+            v-on:click="update(index)">{{ value.name }}</button>
             <InfoTable v-bind:tableName="tableName"
             ref="infotable"></InfoTable>
-            <button v-for="(value, index) in tableList" v-bind:key="index"
-            v-on:click="update(index)">{{ value.name }}</button>
         </div>
     </div>
 </template>
@@ -40,7 +40,7 @@ export default Vue.extend({
   methods: {
     update(newIndex:number):void {
       this.index = newIndex;
-      (this.$refs.infotable as any).updateSelf(this.tableName,'all');
+      (this.$refs.infotable as any).updateSelf(this.tableName,'/all');
     }
   }
 })

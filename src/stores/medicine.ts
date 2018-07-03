@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {ILoadMessage, request, IResponseData} from './request'
 export interface IMedicineInfo {
   mid: String,
   name?: String,
@@ -29,29 +29,27 @@ export default {
       return state.list;
     }
   },
+
   actions: {
-    ['UPDATE_MEDICINE_LIST'](state:any, selectMessage:String) {
-      return new Promise((resolve, reject)=> {
-        axios.get('/api/medicine/all').then((response)=>{
-          state.list = []
-          if (response.data) {
-            let data = response.data.list
-            for (let i in data) {
-              let curInfo: IMedicineInfo = {
-                mid: data[i].mid,
-                name: data[i].name,
-                proDate: data[i].proDate,
-                shelfLife: data[i].shelfLife,
-                prescription: data[i].prescription == 'y' ? true : false,
-                buyingPrice: parseFloat(data[i].buyingPrice),
-                price: parseFloat(data[i].price)
-              }
-              state.list.push(curInfo)
-            }
-          }
-          resolve('finished');
-        });
-      });
+    async ['UPDATE_MEDICINE_LIST'](state:any, options:ILoadMessage) {
+      state.list = []
+      let data = await request('medicine', options.methods,
+        options.selectMessage, options.requestData)
+      let status = (data as IResponseData).status
+      let list = (data as IResponseData).list
+      if (status != 'failed') {
+        list.forEach((value)=>{
+          state.list.push({
+            mid: value.mid,
+            name: value.name,
+            proDate: value.proDate,
+            shelfLife: value.shelfLife,
+            prescription: value.prescription == 'y' ? true : false,
+            buyingPrice: parseFloat(value.buyingPrice),
+            price: parseFloat(value.price)
+          })
+        })
+      }
     }
   }
 };

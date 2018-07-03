@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { ILoadMessage, request, IResponseData } from '@/stores/request';
 export interface ISupplier {
   sid: String,
   name: String,
@@ -18,28 +19,23 @@ export default {
       }
   },
   actions: {
-      ['UPDATE_SUPPLIER_LIST'](state:any, selectMessage:String) {
-          return new Promise((resolve, reject)=>{
-            axios.get(`/api/supplier/${selectMessage}`).then((response)=>{
-              state.list = []
-              if (response.data) {
-                let data = response.data.list
-                for (let i in data) {
-                  let curInfo: ISupplier = {
-                    sid: data[i].sid,
-                    name: data[i].name,
-                    manager: data[i].manager,
-                    phone: data[i].phone,
-                    address: data[i].address
-                  }
-                  state.list.push(curInfo)
-                }
-                resolve('finished')
-              } else {
-                reject('failed')
-              } 
-            })
+    async ['UPDATE_SUPPLIER_LIST'](state:any, options:ILoadMessage) {
+      state.list = []
+      let data = await request('supplier', options.methods,
+        options.selectMessage, options.requestData)
+      let status = (data as IResponseData).status
+      let list = (data as IResponseData).list
+      if (status != 'failed') {
+        list.forEach((value)=>{
+          state.list.push({
+            sid: value.sid,
+            name: value.name,
+            manager: value.manager,
+            phone: value.phone,
+            address: value.address
           })
-      }
+        })
+      }  
+    }
   }
 }

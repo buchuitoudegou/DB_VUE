@@ -11,10 +11,11 @@ app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/api', router)
+/*
 app.use((req, res, next)=>{
 	res.sendFile(path.resolve(__dirname, 'dist/index.html'));	
 })
-
+*/
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

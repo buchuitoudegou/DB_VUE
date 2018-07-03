@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { ILoadMessage, request, IResponseData } from '@/stores/request';
 export interface IGuest {
   gid: String,
   name: String,
@@ -16,30 +16,21 @@ export default {
       }
   },
   actions: {
-      ['UPDATE_GUEST_LIST'](state:any, selectMessage:String) {
-          // state.a = 2
-          return new Promise((resolve, reject)=>{
-            axios.get(`/api/guest/${selectMessage}`).then((response)=>{
-              state.list.splice(0, state.list.length)
-              if (response.data) {
-                let data = response.data.list
-                for (let i in data) {
-                  let curInfo: IGuest = {
-                    gid: data[i].gid,
-                    name: data[i].name,
-                    //manager: data[i].manager,
-                    phone: data[i].phone,
-                    //address: data[i].address
-                  }
-                  state.list.push(curInfo)
-                }
-                resolve('finished')
-                console.log(state.list)
-              } else {
-                reject('failed')
-              } 
-            })
+    async ['UPDATE_GUEST_LIST'](state:any, options:ILoadMessage) {
+      state.list = []
+      let data = await request('guest', options.methods,
+        options.selectMessage, options.requestData)
+      let status = (data as IResponseData).status
+      let list = (data as IResponseData).list
+      if (status != 'failed') {
+        list.forEach((value)=>{
+          state.list.push({
+            gid: value.gid,
+            name: value.name,
+            phone: value.phone
           })
-      }
+        })
+      }  
+    }
   }
 }
