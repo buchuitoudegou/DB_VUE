@@ -74,5 +74,19 @@ router.get('/supplier/*', (req, res)=>{
   res.send(data)
   res.end()
 })
-
+router.get('/purchase/*', (req, res)=>{
+	let data = {
+		status: 'ok',
+		list: [
+			{
+				eid: '1921221',
+				sid: '1200022',
+				mid: '0090933',
+				purchaseTime: '2019-01-01'
+			}
+		]
+	}
+	res.send(data)
+	res.end()
+})
 module.exports = router

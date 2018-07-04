@@ -53,8 +53,6 @@
 2. 功能
 	+ 盘点库存
 	+ 条件查询库存
-	+ 退货入库登记
-	+ 进货入库登记
 
 ### 销售管理模块
 1. 信息
@@ -70,6 +68,7 @@
 
 ### 财务统计
 1. 信息
+	+ 流水单号
 	+ 财务支出/财务进账
 	+ 流水时间
 	+ 金额
@@ -83,6 +82,12 @@
 
 ## 关于API的设计
 1. 基本信息的查询
-	1. GET: /api/{表名}——返回这个基本信息的所有内容。例：/api/medicine
+	1. GET: /api/{表名}/all——返回这个基本信息的所有内容。例：/api/medicine
 	2. GET: /api/{表名}/{字段名}/{筛选信息}/...——通过字段信息筛选返回符合条件的信息。例：/api/medicine/proDate/20180101/price/10 返回生产日期为18年10月10日，且价格为10元的药品
-	3. POST: /api/{表名}/{日期字段}/..., request-data: {{日期字段1}:{from:[日期], to:[日期]}}，返回一个时间段内的产品信息。例：api/medicine/proDate/name/lzk/shelfLife request-data: {proDate:{from:'20180101', to:'20180909'}, shelfLife:{from:'20180101', to:'20180918'}}返回生产日期1月1日到9月9日，且保质期从1月1日到9月18日的产品
+	3. POST: /api/{表名}/{日期字段}/..., request-data: {{日期字段1}:{from:[日期], to:[日期]}}，返回一个时间段内的产品信息。例：api/medicine/proDate/name/lzk/shelfLife request-data: {proDate:{from:'20180101', to:'20180909'}, shelfLife:{from:'20180101', to:'20180918'}}返回生产日期1月1日到9月9日，且保质期从1月1日到9月18日的叫lzk的产品
+2. 进货信息查询
+	1. GET: /api/purchase/all 返回所有进货信息
+	2. GET: /api/purchase/{字段名}/{筛选信息}/...单值查询
+	3. POST: /api/purchase/purchaseTime...返回一个时间段内的进货信息。例: api/purchase/eid/1999/purchaseTime, request-data: {purchaseTime:{from:'20180101', to:'20180901'}}, 返回经手员工id为1999且进货日期从18年1月1日到9月1日的进货信息
+	4. POST: /api/purchase 提交新的进货登记。request-data:{eid:{经手员工id}, sid:{供应商id},mid:{药品id}, purchaseTime:{进货时间}}。返回{status: {failed/ok}}。（注意进货之后财务和库存模块增加相应的记录）
+

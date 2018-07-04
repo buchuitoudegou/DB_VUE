@@ -43,6 +43,7 @@ export default  Vue.extend( {
           case '供应商': return this.$store.getters.GET_SUPPLIER_LIST
           case '员工': return this.$store.getters.GET_EMPLOYEE_LIST
           case '客户': return this.$store.getters.GET_GUEST_LIST
+          case '进货管理': return this.$store.getters.GET_PURCHASE_LIST
           default: return []
         }
       }

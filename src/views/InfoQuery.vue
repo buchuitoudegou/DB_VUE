@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <div>
            <button v-for="(value, index) in tableList" v-bind:key="index"
             v-on:click="update(index)">{{ value.name }}</button>

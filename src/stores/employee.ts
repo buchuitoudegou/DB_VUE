@@ -1,4 +1,4 @@
-import { ILoadMessage, request, IResponseData } from '@/stores/request';
+import { ILoadMessage, request, IResponseData } from '@/utils/request';
 export interface IEmployee {
   eid: String,
   name: String,

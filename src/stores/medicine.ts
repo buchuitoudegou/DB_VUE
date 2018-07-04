@@ -1,4 +1,4 @@
-import {ILoadMessage, request, IResponseData} from './request'
+import {ILoadMessage, request, IResponseData} from '@/utils/request'
 export interface IMedicineInfo {
   mid: String,
   name?: String,
