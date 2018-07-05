@@ -45,6 +45,8 @@ export default  Vue.extend( {
           case '客户': return this.$store.getters.GET_GUEST_LIST
           case '进货管理': return this.$store.getters.GET_PURCHASE_LIST
           case '库存管理': return this.$store.getters.GET_STORAGE_LIST
+          case '销售管理': return this.$store.getters.GET_SALE_LIST
+          case '财务统计': return this.$store.getters.GET_FINANCE_LIST
           default: return []
         }
       }
@@ -108,6 +110,18 @@ export default  Vue.extend( {
           flag = true
           string += '/storeTime'
           requestData.storeTime = dates[4].storeTime
+        }
+      } else if (this.tableName == '销售管理') {
+        if (dates[5].saleTime.from != null && dates[5].saleTime.to != null) {
+          flag = true
+          string += '/saleTime'
+          requestData.saleTime = dates[5].saleTime
+        }
+      } else if (this.tableName == '财务统计') {
+        if (dates[6].financeTime.from != null && dates[6].financeTime.to != null) {
+          flag = true
+          string += '/financeTime'
+          requestData.financeTime = dates[6].financeTime
         }
       }
       if (!flag) {

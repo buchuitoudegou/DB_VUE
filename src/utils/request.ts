@@ -3,11 +3,12 @@ export interface ILoadMessage {
   tableName: string,
   selectMessage: string,
   methods: string,
-  requestData?: any
+  requestData?: any,
 }
 export interface IResponseData {
   status: string,
-  list: any[]
+  list: any[],
+  money?: number
 }
 export function request(tablename:string, methods:string, select:string,requestData:any) {
   // console.log(2)

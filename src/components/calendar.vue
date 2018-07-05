@@ -40,6 +40,22 @@
           <el-date-picker type="date" placeholder="选择日期" style="width:20%"
          v-model="stto" value-format="yyyyMMdd"></el-date-picker>
        </p>
+       <p v-if="tablename=='销售管理'">
+         saleTime: from 
+         <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="safrom" value-format="yyyyMMdd"></el-date-picker>
+          to: 
+          <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="sato" value-format="yyyyMMdd"></el-date-picker>
+       </p>
+       <p v-if="tablename=='财务统计'">
+         financeTime: from 
+         <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="fifrom" value-format="yyyyMMdd"></el-date-picker>
+          to: 
+          <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="fito" value-format="yyyyMMdd"></el-date-picker>
+       </p>
     </div>
 </template>
 <script lang="ts">
@@ -59,7 +75,11 @@ export default Vue.extend({
       pufrom: null,
       puto: null,
       stfrom: null,
-      stto: null
+      stto: null,
+      safrom: null,
+      sato: null,
+      fifrom: null,
+      fito: null
     }
   },
   methods: {
@@ -93,6 +113,18 @@ export default Vue.extend({
           storeTime: {
             from: this.stfrom,
             to: this.stto
+          }
+        },
+        {
+          saleTime: {
+            from: this.safrom,
+            to: this.sato
+          }
+        },
+        {
+          financeTime: {
+            from: this.fifrom,
+            to: this.fito
           }
         }
       ]

@@ -36,11 +36,13 @@ export default {
           })
         })
       }
-      // console.log(state.list)
+      // console.log(state.l// ist)
     },
     async ['HANDOUT_PURCHASE_ITEM'](state:any, options:ILoadMessage) {
       await request('purchase', options.methods, options.selectMessage, options.requestData);
-      await request('purchase', 'GET', '/all', {});
+      // await request('purchase', 'GET', '/all', {});
+      this.UPDATE_PURCHASE_LIST(state, {tableName:'进货管理', methods:'GET', 
+      selectMessage:'/all', requestData: {}});
     }
   }
 }

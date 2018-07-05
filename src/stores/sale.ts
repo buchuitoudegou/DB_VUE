@@ -37,6 +37,12 @@ export default {
           })
         })
       }
+    },
+    async ['HANDOUT_SALE_ITEM'](state:any, options:ILoadMessage) {
+      await request('sale', options.methods, options.selectMessage, options.requestData);
+      // await request('sale', 'GET', '/all', {});
+      this.UPDATE_SALE_LIST(state, {tableName:'销售管理', methods:'GET', 
+      selectMessage:'/all', requestData: {}});
     }
   }
 }

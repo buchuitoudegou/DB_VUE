@@ -159,7 +159,7 @@ router.get('/storage/*', (req, res)=>{
 })
 // 范围查询
 router.post('/storage/*', (req, res)=>{
-  console.log(req.body)
+  //console.log(req.body)
   let data = {
     status: 'ok',
     list: [
@@ -167,6 +167,90 @@ router.post('/storage/*', (req, res)=>{
         mid: '12121212',
         storeTime: '2018-09-01',
         reason: '进货'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
+
+router.get('/sale/*', (req, res)=>{
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        mid: 'eafawef',
+        gid: '121212',
+        sale: true, 
+        saleTime: '2019-01-09',
+        eid: 'adasddf'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
+// 范围查询
+router.post('/sale/*', (req, res)=>{
+  console.log(req.body)
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        mid: 'eafaw112@@ef',
+        gid: 'dsfa12',
+        sale: false, 
+        saleTime: '2019-01-09',
+        eid: 'adasddddf'
+      },
+      {
+        mid: 'eafawef',
+        gid: '121212',
+        sale: true, 
+        saleTime: '2019-01-09',
+        eid: 'adasddf'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
+// 提交新的销售信息
+router.post('/sale', (req, res)=>{
+  console.log(req.body)
+  res.send({status:'ok'})
+  res.end()
+})
+router.get('/finance/*',(req, res)=>{
+  let data = {
+    status: 'ok',
+    money: 100,
+    list: [
+      {
+        fid: 'adfasdf',
+        inOut: true,       // 支出或收入
+        financeTime: '2019-01-01', // 流水时间
+        count: 100,       // 金额
+        reason: 'purchase'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
+// 范围查询
+router.post('/finance/*', (req, res)=>{
+  console.log(req.body)
+  let data = {
+    status: 'ok',
+    money: 1000,
+    list: [
+      {
+        fid: 'aasf1412df',
+        inOut: false,       // 支出或收入
+        financeTime: '2019-01-01', // 流水时间
+        count: 1090,       // 金额
+        reason: 'sale'
       }
     ]
   }
