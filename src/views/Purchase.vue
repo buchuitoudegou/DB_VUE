@@ -6,22 +6,21 @@
       <p>药品id: <input v-model="mid"/></p>
       <p>供应商id: <input v-model="sid"/></p>
       <p>进货时间: <input placeholder="format:yyyyMMdd" v-model="purchaseTime"/></p>
-      <button @click="handout">进货</button>
+      <button @click="handout()">进货</button>
     </div>
     <InfoTable tableName="进货管理"></InfoTable>
-    <p>{{ $store.state.purchase }}</p>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import topbar from '@/components/TopBar.vue'
 import InfoTable from '@/components/InfoTable.vue'
 import {formatDate, IDate, checkDate} from '@/utils/utils.ts' 
 import purchase from '@/stores/purchase';
+import calendar from '@/components/calendar.vue'
 export default Vue.extend({
   components: {
-    topbar,
-    InfoTable
+    InfoTable,
+    calendar
   },
   data: ()=>{
     return {
@@ -34,6 +33,7 @@ export default Vue.extend({
   methods: {
     handout() {
       let date: IDate = formatDate(this.purchaseTime);
+      console.log(date)
       if (checkDate(date)) {
         let requestData = {
           eid: this.eid,
@@ -43,6 +43,8 @@ export default Vue.extend({
         }
         this.$store.dispatch('handoutRequest', {tableName: '进货管理', selectMessage: '/',
         methods: 'POST', requestData})
+      } else {
+        alert('日期格式错误')
       }
     }
   }

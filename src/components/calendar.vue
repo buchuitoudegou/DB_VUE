@@ -24,13 +24,21 @@
           <el-date-picker type="date" placeholder="选择日期" style="width:20%"
          v-model="bto" value-format="yyyyMMdd"></el-date-picker>
        </p>
-       <p v-if="tablename=='进货'">
+       <p v-if="tablename=='进货管理'">
          purchaseTime: from 
          <el-date-picker type="date" placeholder="选择日期" style="width:20%"
-         v-model="bfrom" value-format="yyyyMMdd"></el-date-picker>
+         v-model="pufrom" value-format="yyyyMMdd"></el-date-picker>
           to: 
           <el-date-picker type="date" placeholder="选择日期" style="width:20%"
-         v-model="bto" value-format="yyyyMMdd"></el-date-picker>
+         v-model="puto" value-format="yyyyMMdd"></el-date-picker>
+       </p>
+       <p v-if="tablename=='库存管理'">
+         storeTime: from 
+         <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="stfrom" value-format="yyyyMMdd"></el-date-picker>
+          to: 
+          <el-date-picker type="date" placeholder="选择日期" style="width:20%"
+         v-model="stto" value-format="yyyyMMdd"></el-date-picker>
        </p>
     </div>
 </template>
@@ -49,7 +57,9 @@ export default Vue.extend({
       bfrom: null,
       bto: null,
       pufrom: null,
-      puto: null
+      puto: null,
+      stfrom: null,
+      stto: null
     }
   },
   methods: {
@@ -77,6 +87,12 @@ export default Vue.extend({
           purchaseTime: {
             from: this.pufrom,
             to: this.puto
+          }
+        },
+        {
+          storeTime: {
+            from: this.stfrom,
+            to: this.stto
           }
         }
       ]

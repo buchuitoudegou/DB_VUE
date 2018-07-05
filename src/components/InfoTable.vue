@@ -44,6 +44,7 @@ export default  Vue.extend( {
           case '员工': return this.$store.getters.GET_EMPLOYEE_LIST
           case '客户': return this.$store.getters.GET_GUEST_LIST
           case '进货管理': return this.$store.getters.GET_PURCHASE_LIST
+          case '库存管理': return this.$store.getters.GET_STORAGE_LIST
           default: return []
         }
       }
@@ -79,9 +80,11 @@ export default  Vue.extend( {
       let dates:any[] = (this.$refs.calendar as any).getDate()
       let flag = false
       let requestData: any = {};
+      // console.log(dates)
       if (this.tableName == '药品') {
         if (dates[0].proDate.from != null && dates[0].proDate.to != null) {
           flag = true
+          string += '/proDate'
           requestData.proDate = dates[0].proDate
         }
         if (dates[1].shelfLife.from != null && dates[1].shelfLife.to != null) {
@@ -90,7 +93,21 @@ export default  Vue.extend( {
         }
       } else if (this.tableName == '员工') {
         if (dates[2].birth.from != null && dates[2].birth.to != null) {
+          flag = true
+          string += '/birth'
           requestData.birth = dates[2].birth
+        }
+      } else if (this.tableName == '进货管理') {
+        if (dates[3].purchaseTime.from != null && dates[3].purchaseTime.to != null) {
+          flag = true
+          string += '/purchaseTime'
+          requestData.purchaseTime = dates[3].purchaseTime
+        }
+      } else if (this.tableName == '库存管理') {
+        if (dates[4].storeTime.from != null && dates[4].storeTime.to != null) {
+          flag = true
+          string += '/storeTime'
+          requestData.storeTime = dates[4].storeTime
         }
       }
       if (!flag) {

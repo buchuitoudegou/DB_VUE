@@ -7,6 +7,7 @@ import supplier from '@/stores/supplier';
 import guest from '@/stores/guest'
 import purchase from '@/stores/purchase'
 import {ILoadMessage} from '@/utils/request'
+import storage from '@/stores/storage'
 Vue.use(Vuex);
 
 export interface RootStore {
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     supplier,
     guest,
     purchase,
+    storage
   },
   state: {},
   getters: {
@@ -41,6 +43,7 @@ export default new Vuex.Store({
         case '供应商': await supplier.actions.UPDATE_SUPPLIER_LIST(supplier.state, options);break;
         case '客户': await guest.actions.UPDATE_GUEST_LIST(guest.state, options);break;
         case '进货管理': await purchase.actions.UPDATE_PURCHASE_LIST(purchase.state, options);break;
+        case '库存管理': await storage.actions.UPDATE_STORAGE_LIST(storage.state, options);break;
       }  
     },
     async handoutRequest(state:any, options:ILoadMessage) {

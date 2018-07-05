@@ -10,10 +10,14 @@ export function formatDate(date:string):IDate {
   return {
       year: Number(year),
       month: Number(month),
-      day: Number(month)
+      day: Number(day)
   }
 }
 export function checkDate(date:IDate) {
+  if (!(date.year > 2000 && date.year < 2100))
+    return false
+  if (!(date.day > 0 && date.day < 31) || !(date.month >= 1 && date.month <= 12))
+    return false
   switch(date.month) {
     case 1:
     case 3:

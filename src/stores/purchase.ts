@@ -20,6 +20,7 @@ export default {
   actions: {
     async ['UPDATE_PURCHASE_LIST'](state:any, options:ILoadMessage) {
       // state.list.push('b')
+      state.list = []
       let data = await request('purchase', options.methods,
       options.selectMessage, options.requestData)
       let status = (data as IResponseData).status
@@ -35,11 +36,11 @@ export default {
           })
         })
       }
-      console.log(state.list)
+      // console.log(state.list)
     },
     async ['HANDOUT_PURCHASE_ITEM'](state:any, options:ILoadMessage) {
       await request('purchase', options.methods, options.selectMessage, options.requestData);
-      await request('purhcase', 'GET', '/all', {});
+      await request('purchase', 'GET', '/all', {});
     }
   }
 }

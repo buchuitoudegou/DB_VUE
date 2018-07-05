@@ -28,6 +28,26 @@ router.get('/medicine/*', (req, res)=> {
   res.send(data)
   res.end()
 });
+// 范围查询
+router.post('/medicine/*', (req, res)=>{
+  console.log(req.body)
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        mid: '1000',
+        name: 'fasdfaddd',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 100.0,
+        price: 10000.0
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
 router.get('/employee/*', (req, res)=>{
   let data = {
     status: 'ok',
@@ -44,6 +64,24 @@ router.get('/employee/*', (req, res)=>{
   res.send(data)
   res.end()
 });
+// 范围查询
+router.post('/employee/*', (req, res)=>{
+  console.log(req.body)
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        eid: '1adsfasd1',
+        name: 'lzkdasf',
+        birth: '1999-01-01',
+        phone: '19087634522',
+        address: 'shamsdfaolu'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
 router.get('/guest/*', (req, res)=>{
   let data = {
     status: 'ok',
@@ -88,5 +126,51 @@ router.get('/purchase/*', (req, res)=>{
 	}
 	res.send(data)
 	res.end()
+})
+// 进货登记
+router.post('/purchase', (req, res)=>{
+  console.log(req.body)
+  res.send({status:'ok'})
+  res.end()
+})
+// 范围查询
+router.post('/purchase/*', (req, res)=>{
+  console.log(req.body)
+  res.send({status:'ok', list:[]})
+})
+router.get('/storage/*', (req, res)=>{
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        mid: '12121212',
+        storeTime: '2018-09-01',
+        reason: '进货'
+      },
+      {
+        mid: '1212dasdf1',
+        storeTime: '2019-09-01',
+        reason: '退货'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
+})
+// 范围查询
+router.post('/storage/*', (req, res)=>{
+  console.log(req.body)
+  let data = {
+    status: 'ok',
+    list: [
+      {
+        mid: '12121212',
+        storeTime: '2018-09-01',
+        reason: '进货'
+      }
+    ]
+  }
+  res.send(data)
+  res.end()
 })
 module.exports = router

@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import About from "./views/About.vue";
 import InfoQuery from "./views/InfoQuery.vue";
 import Purchase from './views/Purchase.vue'
+import _Storage from './views/Storage.vue'
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/purchase',
       name: "purchase",
       component: Purchase
+    },
+    {
+      path: '/storage',
+      name: "storage",
+      component: _Storage
     }
   ]
 });
