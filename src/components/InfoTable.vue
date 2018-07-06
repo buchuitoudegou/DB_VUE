@@ -1,20 +1,30 @@
 <template>
     <div v-on:update="update(message)">
-      <p>{{ tablename }}</p>
-      <button @click="filter(tableName)">查询</button>
-      <table>
-        <tr>
-          <td v-for="(value, index) in tableList[0]" v-bind:key="index">
-            <input v-bind:seg="index" class="filter" type="text"/>
-          </td>
-        </tr>
+      <header id="table-title">{{ tablename }}查询</header>
+      <el-table :data="tableList">
+        <el-table-column v-for="(value, index) in tableList[0]" v-bind:key="index" v-bind:label="index" :prop="index">
+            <!--<input v-bind:seg="index" class="filter" type="text"/>-->
+        </el-table-column>
+        
+        <!--
         <tr>
           <td v-for="(value,index) in tableList[0]" v-bind:key="index">{{ index }}</td>
         </tr>
         <tr v-for="(item, index) in tableList" v-bind:key="index">
           <td v-for="(value, key) in item" v-bind:key="key">{{ value }}</td>
-        </tr>
-      </table>
+        </tr>-->
+      </el-table>
+      <div id="page-change">
+      <el-select v-model="pageIndex">
+        <el-option v-for="i in selectoptions" :key="i" :value="i"></el-option>
+      </el-select>
+      </div>
+      <el-button @click="filter(tableName)" style="float:right;">查询</el-button>
+      <el-form label-width="40%">
+        <el-form-item v-for="(value, index) in tableList[0]" v-bind:key="index" :label="index" style="display: inline-block;width:20%;">
+          <input v-bind:seg="index" class="filter" style="width:60%"/>
+        </el-form-item>
+      </el-form>
       <calendar ref="calendar" v-bind:tablename="tablename"></calendar>
     </div>
 </template>
@@ -22,12 +32,18 @@
 import Vue from 'vue'
 import { Prop } from 'vue-property-decorator';
 import calendar from './calendar.vue'
+import { ElInput } from 'element-ui/types/input';
 export default  Vue.extend( {
   components: {
     calendar
   },
   props: {
     tableName: String
+  },
+  data: ()=>{
+    return {
+      pageIndex: 1
+    }
   },
   computed: {
     tablename: {
@@ -37,7 +53,21 @@ export default  Vue.extend( {
     },
     tableList: {
       get():any[] {
-        // return this.tablelist
+        return this.alltableList.slice((this.pageIndex-1)*10, this.pageIndex*10);
+      }
+    },
+    selectoptions: {
+      get(): any[] {
+        let data = []
+        for (let i = 1; i <= parseInt((this.alltableList.length / 10).toString()) + 1; ++ i) {
+          data.push(i)
+        }
+        return data;
+      }
+    },
+    alltableList: {
+      get():any[] {
+        this.pageIndex = 1;
         switch(this.tableName){
           case '药品': return this.$store.getters.GET_MEDICINE_LIST
           case '供应商': return this.$store.getters.GET_SUPPLIER_LIST
@@ -140,3 +170,14 @@ export default  Vue.extend( {
   }
 })
 </script>
+<style>
+  #table-title {
+    color: rgb(44, 62, 80);
+    font-size: 1.25em;
+    text-align: center;
+  }
+  #page-change {
+    text-align: center;
+    margin-top: 1%;
+  }
+</style>

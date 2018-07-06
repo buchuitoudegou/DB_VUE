@@ -3,7 +3,7 @@ import { ILoadMessage,request, IResponseData } from '@/utils/request';
 export interface ISale {
   mid: string,
   gid: string,
-  sale: boolean, // 进货还是退货
+  sale: boolean | string, // 进货还是退货
   saleTime: string,
   eid: string
 }
@@ -31,7 +31,7 @@ export default {
           state.list.push({
             mid: value.mid,
             gid: value.gid,
-            sale: value.sale,
+            sale: value.sale == true ? '销售' : '退货',
             saleTime: value.saleTime,
             eid: value.eid
           })

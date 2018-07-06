@@ -22,7 +22,124 @@ router.get('/medicine/*', (req, res)=> {
         prescription: 'y',
         buyingPrice: 100.0,
         price: 1.0
-      }
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
+      {
+        mid: '12345678',
+        name: 'shabi',
+        proDate: '2018-01-01',
+        shelfLife: '2018-10-10',
+        prescription: 'y',
+        buyingPrice: 10.0,
+        price: 1.0
+      },
     ]
   };
   res.send(data)

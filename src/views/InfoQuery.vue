@@ -1,8 +1,10 @@
 <template>
     <div>
         <div>
-           <button v-for="(value, index) in tableList" v-bind:key="index"
-            v-on:click="update(index)">{{ value.name }}</button>
+          <el-menu style="text-align: center;">
+           <el-menu-item v-for="(value, index) in tableList" v-bind:key="index" v-bind:index="value.toString()"
+            v-on:click="update(index)" style="display:inline-block">{{ value.name }}</el-menu-item>
+            </el-menu>
             <InfoTable v-bind:tableName="tableName"
             ref="infotable"></InfoTable>
         </div>
@@ -45,3 +47,6 @@ export default Vue.extend({
   }
 })
 </script>
+<style scoped>
+
+</style>
