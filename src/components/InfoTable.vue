@@ -121,6 +121,7 @@ export default  Vue.extend( {
         }
         if (dates[1].shelfLife.from != null && dates[1].shelfLife.to != null) {
           flag = true
+          string += '/shelfLife'
           requestData.shelfLife = dates[1].shelfLife
         }
       } else if (this.tableName == '员工') {
