@@ -4,7 +4,7 @@ export interface IMedicineInfo {
   name?: String,
   proDate?: String,
   shelfLife?: String,
-  prescription?: Boolean,
+  prescription?: Boolean | string,
   buyingPrice?: number,
   price?: number
 }
@@ -44,7 +44,7 @@ export default {
             name: value.name,
             proDate: value.proDate,
             shelfLife: value.shelfLife,
-            prescription: value.prescription == 'y' ? true : false,
+            prescription: value.prescription,
             buyingPrice: parseFloat(value.buyingPrice),
             price: parseFloat(value.price)
           })

@@ -132,3 +132,9 @@ export default Vue.extend({
   }
 })
 </script>
+<style>
+  p {
+    font-size: 0.85em;
+    color: rgb(44, 62, 80);
+  }
+</style>

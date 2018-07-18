@@ -14,3 +14,12 @@ export default Vue.extend({
   }
 })
 </script>
+<style>
+  #app {
+    margin: 0;
+    position: absolute;
+    top: -2.6%;
+    left: 0%;
+    width: 100%;
+  }
+</style>

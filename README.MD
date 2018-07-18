@@ -3,6 +3,7 @@
 1. yarn 包管理程序
 2. nodejs 暂时没有版本要求.
 服务端开发的同学可以打开router.js和app.js, 里面给出了返回信息的格式。注意看api的设计。
+3. 运行：运行应用：yarn start。运行服务端：node bin/www。（注意修改model模块中的密码）。initialize.js模块用于测试，如果自己建了表可以不运行这个文件。
 ## 功能模块
 ### 基本信息查询
 1. 信息
