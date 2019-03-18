@@ -1,4 +1,5 @@
 # DB VUE PROJECT
+![preview](https://travis-ci.org/buchuitoudegou/DB_VUE.svg?branch=master)
 ## 依赖安装
 1. yarn 包管理程序
 2. nodejs 暂时没有版本要求.
