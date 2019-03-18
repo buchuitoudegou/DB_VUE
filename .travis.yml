@@ -1,4 +1,13 @@
-language: javascript
+language: node_js
+node_js:
+  - "8.6.0"
+  - "node"
 before_script:
   - npm install
-  - npm build
+stage:
+  - build
+jobs:
+  include:
+    - stage: build
+      script:
+        - npm run build
