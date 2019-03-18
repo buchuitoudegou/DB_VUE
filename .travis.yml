@@ -2,12 +2,7 @@ language: node_js
 node_js:
   - "9.10.0"
   - "node"
-before_script:
-  - npm install
-stage:
-  - build
-jobs:
-  include:
-    - stage: build
-      script:
-        - npm run build
+install:
+  - yarn install
+script:
+  - yarn build
